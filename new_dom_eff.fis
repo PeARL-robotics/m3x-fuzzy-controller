@@ -1,0 +1,45 @@
+[System]
+Name='new_dom_eff'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=6
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='dominant_effort'
+Range=[1 20]
+NumMFs=3
+MF1='resistant':'gaussmf',[7 1]
+MF2='normal':'gaussmf',[2 10]
+MF3='sensitive':'gaussmf',[7 20]
+
+[Input2]
+Name='human_intention'
+Range=[0 1]
+NumMFs=2
+MF1='still':'gaussmf',[0.2 0]
+MF2='movement':'gaussmf',[0.2 1]
+
+[Output1]
+Name='change'
+Range=[-3 3]
+NumMFs=5
+MF1='decrease':'constant',[-3]
+MF2='small_decrease':'constant',[-1]
+MF3='stay_same':'constant',[0]
+MF4='small_increase':'constant',[1]
+MF5='increase':'constant',[3]
+
+[Rules]
+1 2, 5 (1) : 1
+2 2, 5 (1) : 1
+3 2, 4 (1) : 1
+1 1, 3 (1) : 1
+2 1, 2 (1) : 1
+3 1, 1 (1) : 1
